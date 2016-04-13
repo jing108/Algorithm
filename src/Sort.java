@@ -1,6 +1,7 @@
 
 public class Sort {	
 	
+	//冒泡排序
 	public static void BubbleSort(int[] arr) {
 		int tmp = 0;
 		for (int i=0;i<arr.length;i++) {
@@ -14,7 +15,55 @@ public class Sort {
 		}
 	}
 	
+	/**
+	 * 第一次改进：冒泡排序的结束条件：在某一次的遍历中，如果没有发生元素交换，则说明排序已经成功。
+	 * 所以，改进依据就是：如果没有发生元素交换，则排序成功
+	 * 改进的效果：当某次遍历的结果已经有序，就不会继续遍历，是减少遍历的次数
+	 * @param arr
+	 */
+	public static void BubbleSort1(int[] arr) {
+		int tmp = 0;
+		boolean isSwap = true; //是否发生了交换
+		int j = arr.length;
+		while(isSwap) {
+			isSwap = false;
+			for (int i=1;i<j;i++) {
+				if (arr[i-1] > arr[i]) {
+					isSwap = true;	//发生了交换
+					tmp = arr[i-1];
+					arr[i-1] = arr[i];
+					arr[i] = tmp;
+				}
+			}
+			
+			j--;
+		}
+	}
 	
+	/**
+	 * 第二次改进，在冒泡排序的某一次遍历过程中，如果发生了元素交换，那么对这一次的遍历来说，
+	 * 元素交换的位置之后的元素是有序的
+	 * 改进的依据：元素交换位置之后的元素是有序的
+	 * 改进的效果：在第二次改进的基础上，每一次遍历中也会减少需要比较的元素
+	 * @param arr
+	 */
+	public static void BubbleSort2(int[] arr) {
+		int tmp = 0;
+		int index = arr.length;
+		int j = index;
+		while (index > 0) {
+			for (int i=1;i<j;i++) {
+				index = 0;
+				if (arr[i-1] > arr[i]) {
+					tmp = arr[i-1];
+					arr[i-1] = arr[i];
+					arr[i] = tmp;
+					index = i;
+				}
+			}
+			j = index;
+		}
+	}
 	
 	public static void main(String[] args) {
 		
@@ -28,7 +77,7 @@ public class Sort {
 		
 		System.out.println();
 		
-		BubbleSort(arr);
+		BubbleSort2(arr);
 		
 		for (int i=0;i<arr.length;i++) {
 			System.out.print(arr[i] + " ");
