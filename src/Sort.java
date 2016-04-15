@@ -86,6 +86,27 @@ public class Sort {
 		}
 	}
 	
+	/**
+	 * 选择排序：从剩余数组中选取最小的一个元素，将其和前面的放到数组的前列。
+	 * 这样，当剩余数组中没有元素了，就说明数组已经有序
+	 * @param arr
+	 */
+	public static void SelectSort(int[] arr) {
+		for (int i=0;i<arr.length;i++) {
+			//记录最小元素的索引
+			int min = i;
+			for (int j=i+1;j<arr.length;j++) {
+				if (arr[j] < arr[min]) {
+					min = j;
+				}
+			}
+			int tmp = arr[i];
+			arr[i] = arr[min];
+			arr[min] = tmp;
+		}
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		int[] arr = new int[]{
@@ -98,7 +119,7 @@ public class Sort {
 		
 		System.out.println();
 		
-		InsertSort(arr);
+		SelectSort(arr);
 		
 		for (int i=0;i<arr.length;i++) {
 			System.out.print(arr[i] + " ");
