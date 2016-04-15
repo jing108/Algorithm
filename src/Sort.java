@@ -65,6 +65,27 @@ public class Sort {
 		}
 	}
 	
+	/**
+	 * 插入排序，从数组第二个元素开始，将其插入到前面的合适位置上，使得它前面的数据有序。
+	 * 这样就将数组分为两个部分：索引前面的有序数组和索引后面的待排序数组
+	 * 将数组遍历完，数组就是一个有序数组了
+	 * @param arr
+	 */
+	public static void InsertSort(int[] arr) {
+		int tmp;
+		for (int i=1;i<arr.length;i++) {
+			for (int j=i;j>0;j--) {
+				if (arr[j] < arr[j-1]) {
+					tmp = arr[j];
+					arr[j] = arr[j-1];
+					arr[j-1] = tmp;
+				} else {
+					break;
+				}
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		int[] arr = new int[]{
@@ -77,10 +98,17 @@ public class Sort {
 		
 		System.out.println();
 		
-		BubbleSort2(arr);
+		InsertSort(arr);
 		
 		for (int i=0;i<arr.length;i++) {
 			System.out.print(arr[i] + " ");
 		}
+		
+		System.out.println();
+		
+		//test
+//		for (int i=10;i>=0;i--) {
+//			System.out.println(i);
+//		}
 	}
 }
